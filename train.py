@@ -3,7 +3,7 @@
 # import the relevant A2Perf domain
 import rl_perf
 import rl_perf.domains.quadruped_locomotion
-
+import rl_perf.domains.web_nav
 # import gymnasium to create the environment
 import gymnasium as gym
 
@@ -11,14 +11,17 @@ import gymnasium as gym
 from absl import app
 
 # import packages needed for your training
-from stable_baselines3 import PPO
-from stable_baselines3.common.env_util import make_vec_env
+# from stable_baselines3 import PPO
+# from stable_baselines3.common.env_util import make_vec_env
 
+# print all registered gym environments
+env = gym.make('WebNavigation-v0', {'headless':True})
+env.reset()
 # 2) Next, we define our training function. This function will be called by the abseil app.
 def train():
     '''Include your training algorithm here.'''
     # Create the environment
-    vec_env = make_vec_env("QuadrupedLocomotion-v0", n_envs=8)
+    vec_env = make_vec_env("WebNavigation-v0", n_envs=8)
 
     # Create the agent
     model = PPO("MlpPolicy", vec_env, verbose=1)
