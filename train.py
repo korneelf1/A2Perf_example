@@ -6,6 +6,7 @@ import rl_perf.domains.quadruped_locomotion
 import rl_perf.domains.web_nav
 # import gymnasium to create the environment
 import gymnasium as gym
+import gin
 
 # import the abseil app to run the experiment
 from absl import app
@@ -15,8 +16,9 @@ from absl import app
 # from stable_baselines3.common.env_util import make_vec_env
 
 # print all registered gym environments
-env = gym.make('WebNavigation-v0', {'headless':True})
-env.reset()
+env = gym.make('WebNavigation-v0')
+
+print(env.reset())
 # 2) Next, we define our training function. This function will be called by the abseil app.
 def train():
     '''Include your training algorithm here.'''
@@ -40,4 +42,5 @@ def main(_):
 
 if __name__ == '__main__':
   # Run the main function using the abseil app. This allows us to pass command line arguments to the script.
-  app.run(main)
+  # app.run(main)
+  pass
