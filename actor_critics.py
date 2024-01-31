@@ -2,9 +2,9 @@ import torch
 
 class Actor_net(torch.nn.Module):
     def __init__(self, state_shape, action_shape):
-        super(Actor_net).__init__()
+        super(Actor_net, self).__init__()
         self.lin_layers = torch.nn.Sequential(
-            torch.nn.Linear(state_shape[0], 128),
+            torch.nn.Linear(state_shape, 128),
             torch.nn.Sigmoid(),
             torch.nn.Linear(128, 128),
             torch.nn.Sigmoid(),
@@ -19,7 +19,7 @@ class Actor_net(torch.nn.Module):
             torch.nn.Flatten(),
             torch.nn.Linear(288, 512),
             torch.nn.ReLU(),
-            torch.nn.Linear(512, action_shape[0]),
+            torch.nn.Linear(512, action_shape),
             torch.nn.Tanh(),
         )
 
@@ -30,9 +30,9 @@ class Actor_net(torch.nn.Module):
     
 class Critic_net(torch.nn.Module):
     def __init__(self, state_shape, action_shape):
-        super(Critic_net).__init__()
+        super(Critic_net, self).__init__()
         self.lin_layers = torch.nn.Sequential(
-            torch.nn.Linear(state_shape[0], 128),
+            torch.nn.Linear(state_shape, 128),
             torch.nn.Sigmoid(),
             torch.nn.Linear(128, 128),
             torch.nn.Sigmoid(),
@@ -47,7 +47,7 @@ class Critic_net(torch.nn.Module):
             torch.nn.Flatten(),
             torch.nn.Linear(288, 512),
             torch.nn.ReLU(),
-            torch.nn.Linear(512, action_shape[0]),
+            torch.nn.Linear(512, action_shape),
             torch.nn.Tanh(),
         )
 
